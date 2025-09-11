@@ -15,7 +15,7 @@ class TestBankAccount(unittest.TestCase):
         account = BankAccount()
         account.deposit(100)
         account.withdraw(50)
-        self.assertEqual(account.balance, 40)
+        self.assertEqual(account.balance, 50)
 
     def test_withdraw_insufficient_funds(self):
         account = BankAccount()
