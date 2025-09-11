@@ -9,7 +9,7 @@ class TestBankAccount(unittest.TestCase):
     def test_deposit(self):
         account = BankAccount()
         account.deposit(100)
-        self.assertEqual(account.balance, 200)
+        self.assertEqual(account.balance, 100)
 
     def test_withdraw(self):
         account = BankAccount()
