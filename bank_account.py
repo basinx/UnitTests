@@ -3,6 +3,12 @@ class BankAccount:
         if initial_balance < 0:
             raise ValueError("Initial balance cannot be negative.")
         self.balance = initial_balance
+        self.overdraft_limit = 0
+
+    def set_overdraft_limit(self, limit):
+        if limit < 0:
+            raise ValueError("Overdraft limit cannot be negative.")
+        self.overdraft_limit = limit
 
     def deposit(self, amount):
         if amount <= 0:
@@ -12,8 +18,8 @@ class BankAccount:
     def withdraw(self, amount):
         if amount <= 0:
             raise ValueError("Withdrawal amount must be positive.")
-        if amount > self.balance:
-            raise ValueError("Cannot withdraw more than the current balance.")
+        if amount > self.balance + self.overdraft_limit:
+            raise ValueError("Cannot withdraw more than the current balance and overdraft limit.")
         self.balance -= amount
 
     def get_balance(self):

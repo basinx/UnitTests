@@ -23,5 +23,19 @@ class TestBankAccount(unittest.TestCase):
         with self.assertRaises(ValueError):
             account.withdraw(100)
 
+    def test_withdraw_with_overdraft_limit(self):
+        account = BankAccount()
+        account.deposit(30)
+        account.set_overdraft_limit(50)
+        account.withdraw(70)  # 30 + 50 overdraft = 80 available
+        self.assertEqual(account.balance, -40)
+
+    def test_withdraw_exceeds_overdraft_limit(self):
+        account = BankAccount()
+        account.deposit(20)
+        account.set_overdraft_limit(50)
+        with self.assertRaises(ValueError):
+            account.withdraw(80)  # 20 + 50 overdraft = 70 available, 80 exceeds
+    
 if __name__ == '__main__':
     unittest.main()
