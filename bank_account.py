@@ -22,5 +22,11 @@ class BankAccount:
             raise ValueError("Cannot withdraw more than the current balance and overdraft limit.")
         self.balance -= amount
 
+    def get_overdraft_limit(self):
+        return self.overdraft_limit
+    
+    def get_account_info(self):
+        return {"balance": self.balance, "overdraft_limit": self.overdraft_limit}
+
     def get_balance(self):
         return self.balance
