@@ -36,5 +36,8 @@ class BankAccount:
         self.withdraw(amount)
         target_account.deposit(amount)
 
+    def drain_account(self):
+        self.balance = 0
+
     def get_balance(self):
         return self.balance
