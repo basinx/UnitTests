@@ -27,6 +27,14 @@ class BankAccount:
     
     def get_account_info(self):
         return {"balance": self.balance, "overdraft_limit": self.overdraft_limit}
+    
+    def transfer(self, amount, target_account):
+        if amount <= 0:
+            raise ValueError("Transfer amount must be positive.")
+        if amount > self.balance + self.overdraft_limit:
+            raise ValueError("Cannot transfer more than the current balance and overdraft limit.")
+        self.withdraw(amount)
+        target_account.deposit(amount)
 
     def get_balance(self):
         return self.balance
